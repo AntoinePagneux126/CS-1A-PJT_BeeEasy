@@ -77,10 +77,10 @@ app.layout = html.Div(
                 html.Br(),  # Vertical space
    
                 dbc.Progress(
-                        "75%",
+                        "",
                         value=75,
                         id = 'honey_progress',
-                        color="primary",
+                        color="success",
                         style={"height": "30px"}
                     ),
                     
