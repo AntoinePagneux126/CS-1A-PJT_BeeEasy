@@ -1,9 +1,8 @@
-import __init__ 
 import sqlite3
 import datetime
 
 
-def add_beekeeper(name : str, cursor):
+def add_beekeeper(name: str, cursor):
     """ Add a beekeeper into the database.
     Parameters
     ----------
@@ -17,13 +16,12 @@ def add_beekeeper(name : str, cursor):
         True if no error occurs, False otherwise.
 
     """
-    
+
     try:
-        
+
         query = "SELECT  * FROM Beekeepers"
         cursor.execute(query)
         data = cursor.fetchall()
-
 
         if len(data) == 0:
             id = 1
@@ -53,10 +51,11 @@ def add_beekeeper(name : str, cursor):
     except sqlite3.Error as error:
         print("A database error occurred while inserting the beekeeper: {}".format(error))
         return False
-    
+
     return True
 
-def add_hive(hive_name : str, beekeeper_name : str, cursor):
+
+def add_hive(hive_name: str, beekeeper_name: str, cursor):
     """ Add a hive into the database.
     Parameters
     ----------
@@ -72,9 +71,9 @@ def add_hive(hive_name : str, beekeeper_name : str, cursor):
         True if no error occurs, False otherwise.
 
     """
-    
+
     try:
-        
+
         query = "SELECT  * FROM Beekeepers"
         cursor.execute(query)
         data = cursor.fetchall()
@@ -106,8 +105,6 @@ def add_hive(hive_name : str, beekeeper_name : str, cursor):
                     return False
             id += 1
 
-
-
         insert_query = "INSERT INTO Beehives (id_hive, name, id_beekeeper) VALUES (?, ?, ?)"
         query_values = (id, hive_name, id_beekeeper)
         cursor.execute(
@@ -121,10 +118,11 @@ def add_hive(hive_name : str, beekeeper_name : str, cursor):
     except sqlite3.Error as error:
         print("A database error occurred while inserting the hive: {}".format(error))
         return False
-    
+
     return True
 
-def add_sensor(measure : str, unity : str, hive_name : str, cursor):
+
+def add_sensor(measure: str, unity: str, hive_name: str, cursor):
     """ Add a sensor into the database related to a hive.
     Parameters
     ----------
@@ -144,7 +142,7 @@ def add_sensor(measure : str, unity : str, hive_name : str, cursor):
     """
 
     try:
-        
+
         query = "SELECT  * FROM Beehives"
         cursor.execute(query)
         data = cursor.fetchall()
@@ -158,8 +156,6 @@ def add_sensor(measure : str, unity : str, hive_name : str, cursor):
         if id_beehive == 0:
             print("Invalid name, the beehive's name is not into the database")
             return False
-        
-
 
         # Compute the id of the sensor
         query = "SELECT  * FROM Sensors "
@@ -175,7 +171,7 @@ def add_sensor(measure : str, unity : str, hive_name : str, cursor):
                 # check if the name is not already used
                 if (d[1] == measure) and (id_beehive == d[3]):
                     print("Measure already used")
-                    return False   
+                    return False
             id += 1
 
         insert_query = "INSERT INTO Sensors (id_sensor, measure, unity, id_hive) VALUES (?, ?, ?,?)"
@@ -191,10 +187,11 @@ def add_sensor(measure : str, unity : str, hive_name : str, cursor):
     except sqlite3.Error as error:
         print("A database error occurred while inserting the sensor: {}".format(error))
         return False
-    
+
     return True
 
-def add_measure(hive_name : str, measure : str ,date : str, value : float , cursor):
+
+def add_measure(hive_name: str, measure: str, date: str, value: float, cursor):
     """ Add a sensor into the database related to a hive.
     Parameters
     ----------
@@ -228,7 +225,7 @@ def add_measure(hive_name : str, measure : str ,date : str, value : float , curs
         if len(data) < 1:
             print("Error, the sensor related to the beehive does not exist")
             return False
-        
+
         id_sensor = data[0][0]
 
         query = "SELECT  * FROM Sensors"
@@ -243,7 +240,7 @@ def add_measure(hive_name : str, measure : str ,date : str, value : float , curs
         if id_sensor not in list_sensor:
             print("Invalid sensor, it does not exist")
             return False
-        
+
         # Compute the id of the measure
         query = "SELECT  * FROM Measures "
         cursor.execute(query)
@@ -254,7 +251,7 @@ def add_measure(hive_name : str, measure : str ,date : str, value : float , curs
             id = 1
             for d in data:
                 if d[0] > id:
-                    id = d[0]  
+                    id = d[0]
             id += 1
 
         insert_query = "INSERT INTO Measures (id_measure, date_measure, value, id_sensor) VALUES (?, ?, ?,?)"
@@ -270,8 +267,9 @@ def add_measure(hive_name : str, measure : str ,date : str, value : float , curs
     except sqlite3.Error as error:
         print("A database error occurred while inserting the Measures: {}".format(error))
         return False
-    
+
     return True
+
 
 def get_hives_name(cursor):
     """ Get the names of all the hives.
@@ -285,7 +283,7 @@ def get_hives_name(cursor):
         List of hives if no error occurs, an empty list otherwise.
 
     """
-    try: 
+    try:
         query = "SELECT name FROM Beehives"
         cursor.execute(
             query
@@ -306,6 +304,7 @@ def get_hives_name(cursor):
         return []
     return(list_hives)
 
+
 def get_beekeepers_name(cursor):
     """ Get the names of all the hives.
     Parameters
@@ -318,7 +317,7 @@ def get_beekeepers_name(cursor):
         List of beekeepers if no error occurs, an empty list otherwise.
 
     """
-    try: 
+    try:
         query = "SELECT name FROM Beekeepers"
         cursor.execute(
             query
@@ -339,7 +338,8 @@ def get_beekeepers_name(cursor):
         return []
     return(list_beekeepers)
 
-def get_hives_of_beekeeper(beekeeper_name : str, cursor):
+
+def get_hives_of_beekeeper(beekeeper_name: str, cursor):
     """ Get the names of the hives of a beekeeper.
     Parameters
     ----------
@@ -353,8 +353,9 @@ def get_hives_of_beekeeper(beekeeper_name : str, cursor):
         List of hives of the beekeeper if no error occurs, an empty list otherwise.
 
     """
-    try: 
-        query = """SELECT Beehives.name FROM Beehives JOIN Beekeepers ON Beehives.id_beekeeper = Beekeepers.id_beekeeper WHERE (Beekeepers.name = {})""".format("'" + beekeeper_name + "'")
+    try:
+        query = """SELECT Beehives.name FROM Beehives JOIN Beekeepers ON Beehives.id_beekeeper = Beekeepers.id_beekeeper WHERE (Beekeepers.name = {})""".format(
+            "'" + beekeeper_name + "'")
         cursor.execute(
             query
         )
@@ -374,7 +375,8 @@ def get_hives_of_beekeeper(beekeeper_name : str, cursor):
         return []
     return(list_hives)
 
-def get_measure_and_unit(hive_name : str, cursor):
+
+def get_measure_and_unit(hive_name: str, cursor):
     """ Get the names of all the hives.
     Parameters
     ----------
@@ -388,18 +390,16 @@ def get_measure_and_unit(hive_name : str, cursor):
         Association {measure : unity} of all the sensors related to the hive.
 
     """
-    try: 
+    try:
         query = """SELECT measure, unity FROM Sensors 
                     JOIN Beehives ON Beehives.id_hive = Sensors.id_hive
                     WHERE Beehives.name = {}
-        """.format('''"'''+ hive_name + '''"''')
+        """.format('''"''' + hive_name + '''"''')
         cursor.execute(
             query
         )
 
         data = cursor.fetchall()
-
-        print(data)
 
         if len(data) == 0:
             "Error, the sensor does not exist"
@@ -416,10 +416,10 @@ def get_measure_and_unit(hive_name : str, cursor):
         print("A database error occurred : {}".format(error))
         return {}
 
-
     return(measures_and_units)
 
-def get_measures(hive_name : str, measure : str, cursor):
+
+def get_measures(hive_name: str, measure: str, cursor):
     """ Get measures from a sensor.
     Parameters
     ----------
@@ -436,7 +436,7 @@ def get_measures(hive_name : str, measure : str, cursor):
 
     """
 
-    try: 
+    try:
         query = """SELECT  Measures.date_measure, Measures.value  FROM Measures
                     INNER JOIN Sensors ON Sensors.id_sensor = Measures.id_sensor 
                     INNER JOIN Beehives ON Beehives.id_hive = Sensors.id_hive 
@@ -448,7 +448,6 @@ def get_measures(hive_name : str, measure : str, cursor):
 
         data = cursor.fetchall()
 
-
     except sqlite3.IntegrityError as error:
         print("An integrity error occurred : {}".format(error))
         return []
@@ -458,24 +457,20 @@ def get_measures(hive_name : str, measure : str, cursor):
     return(data)
 
 
-
-
-
 if __name__ == '__main__':
-    
-    #DEBUG PLAYGROUND
+
+    # DEBUG PLAYGROUND
 
     # Connects to the database.
     conn = sqlite3.connect('database/debug_db.db')
-    
+
     # Enables the foreign key contraints support in SQLite.
     conn.execute("PRAGMA foreign_keys = 1")
-    
-    # Get the cursor for the connection. This object is used to execute queries 
+
+    # Get the cursor for the connection. This object is used to execute queries
     # in the database.
     cursor = conn.cursor()
 
-    
     print(add_beekeeper("Antoine", cursor))
     print(add_beekeeper("Jeremy", cursor))
     print(add_hive("MyHive", "Antoine", cursor))
@@ -485,23 +480,36 @@ if __name__ == '__main__':
     print(add_hive("MyHive2", "Daniel", cursor))
     print(add_sensor("Masse", "kg", "MyHive", cursor))
     print(add_sensor("Pression", "Pa", "MyHive", cursor))
+    print(add_sensor("Temperature", "°C", "MyHive", cursor))
+    print(add_sensor("Humidite", "%", "MyHive", cursor))
+    print(add_sensor("Miel", "kg", "MyHive", cursor))
     print(add_sensor("Masse", "kg", "Jeremyshive", cursor))
     print(add_sensor("Pression", "Pa", "Jeremyshive", cursor))
 
-    for i in range(10):
-        print(add_measure("MyHive","Pression",str(datetime.datetime.now()), i, cursor))
-        print(add_measure("MyHive","Masse",str(datetime.datetime.now()), i**2, cursor))
-        print(add_measure("Jeremyshive","Pression",str(datetime.datetime.now()), i, cursor))
-        print(add_measure("Jeremyshive","Masse",str(datetime.datetime.now()), i**2, cursor))
-    
+    for i in range(12):
+        print(add_measure("MyHive", "Pression", str(
+            datetime.datetime.now()), i, cursor))
+        print(add_measure("MyHive", "Masse", str(
+            datetime.datetime.now()), i**2, cursor))
+        print(add_measure("MyHive", "Temperature", str(
+            datetime.datetime.now()), i**2, cursor))
+        print(add_measure("MyHive", "Miel", str(
+            datetime.datetime.now()), i**3, cursor))
+        print(add_measure("MyHive", "Humidite", str(
+            datetime.datetime.now()), 2*i, cursor))
+
+        print(add_measure("Jeremyshive", "Pression",
+                          str(datetime.datetime.now()), i, cursor))
+        print(add_measure("Jeremyshive", "Masse", str(
+            datetime.datetime.now()), i**2, cursor))
+
     print(get_hives_name(cursor))
     print(get_beekeepers_name(cursor))
     print(get_hives_of_beekeeper("Jeremy", cursor))
     print(get_measures('MyHive', 'Masse', cursor))
-    print(get_measures("Jeremy's hive", "Masse" , cursor))
+    print(get_measures("Jeremy's hive", "Masse", cursor))
     print(get_measure_and_unit("Jeremy's hive", cursor))
     conn.commit()
 
     cursor.close()
     conn.close()
-
