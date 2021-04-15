@@ -473,30 +473,30 @@ if __name__ == '__main__':
 
     print(add_beekeeper("Antoine", cursor))
     print(add_beekeeper("Jeremy", cursor))
-    print(add_hive("MyHive", "Antoine", cursor))
+    print(add_hive("La Ruche d'Antoine", "Antoine", cursor))
     print(add_hive("Jeremyshive", "Jeremy", cursor))
     print(add_hive("Jeremyshive 2", "Jeremy", cursor))
     print(add_hive("Jeremyshive 3", "Jeremy", cursor))
     print(add_hive("MyHive2", "Daniel", cursor))
-    print(add_sensor("Masse", "kg", "MyHive", cursor))
-    print(add_sensor("Pression", "Pa", "MyHive", cursor))
-    print(add_sensor("Temperature", "°C", "MyHive", cursor))
-    print(add_sensor("Humidite", "%", "MyHive", cursor))
-    print(add_sensor("Miel", "kg", "MyHive", cursor))
+    print(add_sensor("Masse", "kg", "La Ruche d'Antoine", cursor))
+    print(add_sensor("Pression", "Pa", "La Ruche d'Antoine", cursor))
+    print(add_sensor("Temperature", "°C", "La Ruche d'Antoine", cursor))
+    print(add_sensor("Humidite", "%", "La Ruche d'Antoine", cursor))
+    print(add_sensor("Miel", "kg", "La Ruche d'Antoine", cursor))
     print(add_sensor("Masse", "kg", "Jeremyshive", cursor))
     print(add_sensor("Pression", "Pa", "Jeremyshive", cursor))
 
     for i in range(12):
-        print(add_measure("MyHive", "Pression", str(
-            datetime.datetime.now()), i, cursor))
-        print(add_measure("MyHive", "Masse", str(
-            datetime.datetime.now()), i**2, cursor))
-        print(add_measure("MyHive", "Temperature", str(
-            datetime.datetime.now()), i**2, cursor))
-        print(add_measure("MyHive", "Miel", str(
-            datetime.datetime.now()), i**3, cursor))
-        print(add_measure("MyHive", "Humidite", str(
-            datetime.datetime.now()), 2*i, cursor))
+        print(add_measure("La Ruche d'Antoine", "Pression", str(
+            datetime.datetime.now()), 985 + i, cursor))
+        print(add_measure("La Ruche d'Antoine", "Masse", str(
+            datetime.datetime.now()), 15 + 2*i, cursor))
+        print(add_measure("La Ruche d'Antoine", "Temperature", str(
+            datetime.datetime.now()), 10 + i, cursor))
+        print(add_measure("La Ruche d'Antoine", "Miel", str(
+            datetime.datetime.now()), i*2, cursor))
+        print(add_measure("La Ruche d'Antoine", "Humidite", str(
+            datetime.datetime.now()), 50 + i, cursor))
 
         print(add_measure("Jeremyshive", "Pression",
                           str(datetime.datetime.now()), i, cursor))

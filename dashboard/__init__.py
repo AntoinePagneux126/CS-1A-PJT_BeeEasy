@@ -14,12 +14,6 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
 
-# stylesheet and title
-BS = "https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
-app = dash.Dash(
-    external_stylesheets=[BS],
-    title =  "Bee Easy"
-)
 
 #images
 ico_directory = 'ico/'
