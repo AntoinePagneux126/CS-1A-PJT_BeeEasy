@@ -4,7 +4,7 @@ Projet de ruche connectée BeeEasy de CentraleSupelec dans le cadre du pôle pro
 Différentes menaces pour la ruche peuvent également être intéressantes à détecter. On peut par exemple citer les frelons asiatique qui sont de vériables prédateurs pour les abeilles.
 
 ## Projet
-Nous prosopons une interface utilisateur (un dashboard) permettant de monitorer les différentes grandeurs physiques ainsi que différents algorithmes pour la détection du frelon asiatique décrit dans le rapport de projet.
+Nous proposons une interface utilisateur (un dashboard) permettant de monitorer les différentes grandeurs physiques ainsi que différents algorithmes pour la détection du frelon asiatique décrit dans le rapport de projet.
 
 ## Installation
 liste des bibliothèques python à installer :
