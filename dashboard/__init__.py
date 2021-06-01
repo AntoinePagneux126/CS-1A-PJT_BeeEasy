@@ -6,12 +6,14 @@ from dash.dependencies import Input, Output, State, ClientsideFunction
 import plotly.express as px
 import base64
 
-# stylesheet and title
-BS = "https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
-app = dash.Dash(
-    external_stylesheets=[BS],
-    title =  "Bee Easy"
-)
+import sys
+import os
+
+PACKAGE_PARENT = '..'
+SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
+sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
+
+
 
 #images
 ico_directory = 'ico/'
