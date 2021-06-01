@@ -1,2 +1,7 @@
 # Folder
 .vscode/
+.env/
+
+# Video
+*.mp4
+
