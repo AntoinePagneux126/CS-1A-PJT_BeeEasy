@@ -15,10 +15,10 @@ Nous proposons une interface utilisateur (un dashboard) permettant de monitorer 
 * sqlite
 
 ### Instalation depuis un terminal
-pip install dash
-pip install dash_bootstrap_components
-pip install numpy
-pip install sqlite
+* pip install dash
+* pip install dash_bootstrap_components
+* pip install numpy
+* pip install sqlite
 
 ## Lancement du dashboard
 Executer le script ./dashboard/index.py
