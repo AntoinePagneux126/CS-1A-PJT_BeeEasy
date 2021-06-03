@@ -35,6 +35,8 @@ def DFS(img, i, j):
 
     connected = []
 
+    shape = img.shape
+
     while(len(next_node) != 0):
 
         n = next_node.pop()
@@ -50,7 +52,7 @@ def DFS(img, i, j):
                         visited[(x, y)] = True
     return connected
 
-def compute_frame(img):
+def compute_frame(img, threshold_size, threshold_link):
     img = np.array(img, dtype=np.int32)
     shape = img.shape
     visited = [False for _ in range(shape[0]*shape[1])]
@@ -67,13 +69,12 @@ def compute_frame(img):
                     x2 = y2 = 0
                     for point in connected:
                         visited[point]  = True
-                        if len(connected) > threshold:
+                        if len(connected) > threshold_size:
                             x, y = point // shape[1], point % shape[1]
-                            noise_free[x, y] = 1
                             x1 = min(x1, x)
                             y1 = min(y1, y)
                             x2 = max(x2, x)
                             y2 = max(y2, y)
                     if len(connected) > 5:
                         localization.append([x1, y1, x2, y2])
-    return localization_correction(localization)
+    return localization_correction(localization, threshold_link)

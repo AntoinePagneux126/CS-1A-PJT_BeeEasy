@@ -31,3 +31,6 @@ class motionDetector:
 
             self.one = np.ones(self.shape, dtype=np.uint8)
             self.initialised = True
+            self.D = np.zeros(self.shape, dtype=np.uint8)
+
+        return self.D
