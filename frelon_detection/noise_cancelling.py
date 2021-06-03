@@ -6,7 +6,7 @@ def compute_box(box1, box2):
 def distance(point1, point2):
     return (point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1])
 
-def distance_box(, box1, box2):
+def distance_box(box1, box2):
     mid_box1 = [(box1[0]+box1[2])/2, (box1[1]+box1[3])/2]
     mid_box2 = [(box2[0]+box2[2])/2, (box2[1]+box2[3])/2]
     return distance(mid_box1, mid_box2)
@@ -38,10 +38,10 @@ def DFS(img, i, j):
     while(len(next_node) != 0):
 
         n = next_node.pop()
-        connected.append(n[0]*.shape[1]+n[1])
+        connected.append(n[0]*shape[1]+n[1])
 
-        for x in range(n[0]-1 if n[0] > 0 else 0, n[0]+2 if n[0] < .shape[0]-1 else .shape[0]):
-            for y in range(n[1]-1 if n[1] > 0 else 0, n[1]+2 if n[1] < .shape[1]-1 else .shape[1]):
+        for x in range(n[0]-1 if n[0] > 0 else 0, n[0]+2 if n[0] < shape[0]-1 else shape[0]):
+            for y in range(n[1]-1 if n[1] > 0 else 0, n[1]+2 if n[1] < shape[1]-1 else shape[1]):
                 if((x, y) in visited):
                     continue
                 else:
