@@ -7,11 +7,18 @@ Différentes menaces pour la ruche peuvent également être intéressantes à d�
 Nous proposons une interface utilisateur (un dashboard) permettant de monitorer les différentes grandeurs physiques ainsi que différents algorithmes pour la détection du frelon asiatique décrit dans le rapport de projet.
 
 ## Installation
-liste des bibliothèques python à installer :
+### liste des bibliothèques python à installer
 * dash
-* plotly
+* dash_bootstrap_components
+* plotly (inclue avec dash)
 * numpy
 * sqlite
+
+### Instalation depuis un terminal
+pip install dash
+pip install dash_bootstrap_components
+pip install numpy
+pip install sqlite
 
 ## Lancement du dashboard
 Executer le script ./dashboard/index.py
